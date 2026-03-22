@@ -113,23 +113,38 @@ This generates a static `out/` directory that can be hosted anywhere.
 
 👉 **[Read the full Deployment Guide](docs/deployment.md)** for instructions on deploying to **GitHub Pages** and **Cloudflare Pages**.
 
-### Optional: Enable a Real Like Counter with Supabase
+### Optional: Enable a Real Like Counter with Firebase
 
-This project now supports a real homepage like counter backed by Supabase.
+This project now supports a real homepage like counter backed by Firebase Firestore.
 
-1. Create a Supabase project.
-2. In the Supabase SQL editor, run the contents of `supabase/site_likes.sql`.
+1. Create a Firebase project and enable Firestore Database.
+2. In Firestore Rules, replace the rules with the contents of `firebase/firestore.rules`.
+3. Create a document `siteLikes/homepage` with:
 
-3. Copy `.env.example` to `.env.local` and fill in:
-
-   ```bash
-   NEXT_PUBLIC_SUPABASE_URL=...
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+   ```json
+   {
+     "count": 0
+   }
    ```
 
-4. For GitHub Pages deployment, add the same values as repository secrets:
-   * `NEXT_PUBLIC_SUPABASE_URL`
-   * `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. Copy `.env.example` to `.env.local` and fill in:
+
+   ```bash
+   NEXT_PUBLIC_FIREBASE_API_KEY=...
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+   NEXT_PUBLIC_FIREBASE_APP_ID=...
+   ```
+
+5. For GitHub Pages deployment, add the same values as repository secrets:
+   * `NEXT_PUBLIC_FIREBASE_API_KEY`
+   * `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+   * `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+   * `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
+   * `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
+   * `NEXT_PUBLIC_FIREBASE_APP_ID`
 
 If these values are missing, the site still builds normally, but the like button falls back to local browser state instead of a shared counter.
 

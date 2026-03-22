@@ -11,9 +11,9 @@
   "dependencies": {
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
-    "@supabase/supabase-js": "^2.99.3",
     "bibtex-parse-js": "^0.0.24",
     "clsx": "^2.1.1",
+    "firebase": "^12.11.0",
     "framer-motion": "^12.18.1",
     "lucide-react": "^0.515.0",
     "next": "15.3.3",

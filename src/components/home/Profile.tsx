@@ -11,10 +11,11 @@ import {
 } from '@heroicons/react/24/outline';
 import { MapPinIcon as MapPinSolidIcon, EnvelopeIcon as EnvelopeSolidIcon } from '@heroicons/react/24/solid';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
+import { doc, getDoc, runTransaction } from 'firebase/firestore';
 import { Github, Pin } from 'lucide-react';
 import type { SiteConfig } from '@/lib/config';
+import { getFirebaseDb } from '@/lib/firebase';
 import { useMessages } from '@/lib/i18n/useMessages';
-import { getSupabaseBrowserClient } from '@/lib/supabase';
 
 // Custom ORCID icon component
 const OrcidIcon = ({ className }: { className?: string }) => (
@@ -47,7 +48,7 @@ interface ProfileProps {
 
 export default function Profile({ author, social, features, researchInterests }: ProfileProps) {
     const messages = useMessages();
-    const supabase = getSupabaseBrowserClient();
+    const db = getFirebaseDb();
 
     const [hasLiked, setHasLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
@@ -71,25 +72,23 @@ export default function Profile({ author, social, features, researchInterests }:
     }, [features.enable_likes]);
 
     useEffect(() => {
-        if (!features.enable_likes || !supabase) return;
+        if (!features.enable_likes || !db) return;
 
         let isMounted = true;
 
         const loadLikeCount = async () => {
             setIsLoadingLikes(true);
 
-            const { data, error } = await supabase
-                .from('site_likes')
-                .select('count')
-                .eq('slug', 'homepage')
-                .single();
-
-            if (!error && data && isMounted) {
-                setLikeCount(data.count ?? 0);
-            }
-
-            if (isMounted) {
-                setIsLoadingLikes(false);
+            try {
+                const snapshot = await getDoc(doc(db, 'siteLikes', 'homepage'));
+                if (snapshot.exists() && isMounted) {
+                    const data = snapshot.data();
+                    setLikeCount(typeof data.count === 'number' ? data.count : 0);
+                }
+            } finally {
+                if (isMounted) {
+                    setIsLoadingLikes(false);
+                }
             }
         };
 
@@ -98,14 +97,14 @@ export default function Profile({ author, social, features, researchInterests }:
         return () => {
             isMounted = false;
         };
-    }, [features.enable_likes, supabase]);
+    }, [db, features.enable_likes]);
 
     const handleLike = async () => {
         if (hasLiked || isSubmittingLike) return;
 
         setShowThanks(false);
 
-        if (!supabase) {
+        if (!db) {
             localStorage.setItem('hao-chen-homepage-liked', 'true');
             setHasLiked(true);
             setShowThanks(true);
@@ -115,23 +114,27 @@ export default function Profile({ author, social, features, researchInterests }:
 
         setIsSubmittingLike(true);
 
-        const { data, error } = await supabase.rpc('increment_site_like', {
-            p_slug: 'homepage',
-        });
+        try {
+            const newCount = await runTransaction(db, async (transaction) => {
+                const likeRef = doc(db, 'siteLikes', 'homepage');
+                const snapshot = await transaction.get(likeRef);
+                const currentCount = snapshot.exists() && typeof snapshot.data().count === 'number'
+                    ? snapshot.data().count
+                    : 0;
+                const nextCount = currentCount + 1;
 
-        if (!error) {
+                transaction.set(likeRef, { count: nextCount }, { merge: true });
+                return nextCount;
+            });
+
             localStorage.setItem('hao-chen-homepage-liked', 'true');
             setHasLiked(true);
-            if (typeof data === 'number') {
-                setLikeCount(data);
-            } else {
-                setLikeCount((prev) => prev + 1);
-            }
+            setLikeCount(newCount);
             setShowThanks(true);
             setTimeout(() => setShowThanks(false), 2000);
+        } finally {
+            setIsSubmittingLike(false);
         }
-
-        setIsSubmittingLike(false);
     };
 
     const socialLinks = [
