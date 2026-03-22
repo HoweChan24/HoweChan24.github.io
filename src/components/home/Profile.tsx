@@ -14,6 +14,7 @@ import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Github, Pin } from 'lucide-react';
 import type { SiteConfig } from '@/lib/config';
 import { useMessages } from '@/lib/i18n/useMessages';
+import { getSupabaseBrowserClient } from '@/lib/supabase';
 
 // Custom ORCID icon component
 const OrcidIcon = ({ className }: { className?: string }) => (
@@ -33,7 +34,7 @@ const ResearchGateIcon = ({ className }: { className?: string }) => (
         alt="ResearchGate"
         width={20}
         height={20}
-        className={className}
+        className={`${className ?? ''} rounded-[2px] dark:invert`}
     />
 );
 
@@ -46,8 +47,12 @@ interface ProfileProps {
 
 export default function Profile({ author, social, features, researchInterests }: ProfileProps) {
     const messages = useMessages();
+    const supabase = getSupabaseBrowserClient();
 
     const [hasLiked, setHasLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(0);
+    const [isLoadingLikes, setIsLoadingLikes] = useState(false);
+    const [isSubmittingLike, setIsSubmittingLike] = useState(false);
     const [showThanks, setShowThanks] = useState(false);
     const [showAddress, setShowAddress] = useState(false);
     const [isAddressPinned, setIsAddressPinned] = useState(false);
@@ -59,24 +64,74 @@ export default function Profile({ author, social, features, researchInterests }:
     useEffect(() => {
         if (!features.enable_likes) return;
 
-        const userHasLiked = localStorage.getItem('jiale-website-user-liked');
+        const userHasLiked = localStorage.getItem('hao-chen-homepage-liked');
         if (userHasLiked === 'true') {
             setHasLiked(true);
         }
     }, [features.enable_likes]);
 
-    const handleLike = () => {
-        const newLikedState = !hasLiked;
-        setHasLiked(newLikedState);
+    useEffect(() => {
+        if (!features.enable_likes || !supabase) return;
 
-        if (newLikedState) {
-            localStorage.setItem('jiale-website-user-liked', 'true');
+        let isMounted = true;
+
+        const loadLikeCount = async () => {
+            setIsLoadingLikes(true);
+
+            const { data, error } = await supabase
+                .from('site_likes')
+                .select('count')
+                .eq('slug', 'homepage')
+                .single();
+
+            if (!error && data && isMounted) {
+                setLikeCount(data.count ?? 0);
+            }
+
+            if (isMounted) {
+                setIsLoadingLikes(false);
+            }
+        };
+
+        void loadLikeCount();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [features.enable_likes, supabase]);
+
+    const handleLike = async () => {
+        if (hasLiked || isSubmittingLike) return;
+
+        setShowThanks(false);
+
+        if (!supabase) {
+            localStorage.setItem('hao-chen-homepage-liked', 'true');
+            setHasLiked(true);
             setShowThanks(true);
             setTimeout(() => setShowThanks(false), 2000);
-        } else {
-            localStorage.removeItem('jiale-website-user-liked');
-            setShowThanks(false);
+            return;
         }
+
+        setIsSubmittingLike(true);
+
+        const { data, error } = await supabase.rpc('increment_site_like', {
+            p_slug: 'homepage',
+        });
+
+        if (!error) {
+            localStorage.setItem('hao-chen-homepage-liked', 'true');
+            setHasLiked(true);
+            if (typeof data === 'number') {
+                setLikeCount(data);
+            } else {
+                setLikeCount((prev) => prev + 1);
+            }
+            setShowThanks(true);
+            setTimeout(() => setShowThanks(false), 2000);
+        }
+
+        setIsSubmittingLike(false);
     };
 
     const socialLinks = [
@@ -321,9 +376,14 @@ export default function Profile({ author, social, features, researchInterests }:
             {researchInterests && researchInterests.length > 0 && (
                 <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 mb-6 hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                     <h3 className="font-semibold text-primary mb-3">{messages.profile.researchInterests}</h3>
-                    <div className="space-y-2 text-sm text-neutral-700 dark:text-neutral-500">
-                        {researchInterests.map((interest, index) => (
-                            <div key={index}>{interest}</div>
+                    <div className="grid grid-cols-2 gap-2 text-sm text-neutral-700 dark:text-neutral-400">
+                        {researchInterests.map((interest) => (
+                            <div
+                                key={interest}
+                                className="rounded-md bg-white/70 px-3 py-2 leading-snug shadow-sm dark:bg-neutral-700/50"
+                            >
+                                {interest}
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -337,6 +397,7 @@ export default function Profile({ author, social, features, researchInterests }:
                             onClick={handleLike}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            disabled={hasLiked || isSubmittingLike}
                             className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${hasLiked
                                 ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
                                 : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 cursor-pointer'
@@ -348,6 +409,11 @@ export default function Profile({ author, social, features, researchInterests }:
                                 <HeartIcon className="h-4 w-4" />
                             )}
                             <span>{hasLiked ? messages.profile.liked : messages.profile.like}</span>
+                            {!isLoadingLikes && (
+                                <span className="tabular-nums text-xs opacity-80">
+                                    {likeCount.toLocaleString()}
+                                </span>
+                            )}
                         </motion.button>
 
                         {/* Thanks bubble */}
