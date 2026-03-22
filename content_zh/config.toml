@@ -1,0 +1,47 @@
+[site]
+title = "陈豪"
+description = "浙江大学博士研究生，研究方向为绿色航运与海事安全。"
+last_updated = "2026年3月22日"
+
+[author]
+name = "陈豪"
+title = "博士研究生"
+institution = "浙江大学"
+
+[social]
+email = "chenhao7674@zju.edu.cn"
+location = "中国杭州"
+location_details = [
+  "浙江大学，",
+  "浙江杭州，中国"
+]
+
+[[navigation]]
+title = "关于"
+type = "page"
+target = "about"
+href = "/"
+
+[[navigation]]
+title = "论文"
+type = "page"
+target = "publications"
+href = "/publications"
+
+[[navigation]]
+title = "奖项"
+type = "page"
+target = "awards"
+href = "/awards"
+
+[[navigation]]
+title = "服务"
+type = "page"
+target = "services"
+href = "/services"
+
+[[navigation]]
+title = "简历"
+type = "page"
+target = "cv"
+href = "/cv"

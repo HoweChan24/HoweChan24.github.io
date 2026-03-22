@@ -1,0 +1,71 @@
+[site]
+title = "Hao Chen"
+description = "PhD student at Zhejiang University, working on green shipping and maritime safety."
+favicon = "/favicon.svg"
+last_updated = "March 22, 2026"
+
+[author]
+name = "Hao Chen"
+title = "PhD Student"
+institution = "Zhejiang University"
+avatar = "/bio.jpg"
+
+[social]
+email = "chenhao7674@zju.edu.cn"
+location = "Hangzhou, China"
+location_url = "https://maps.google.com/?q=Zhejiang+University"
+location_details = [
+  "Zhejiang University,",
+  "Hangzhou, Zhejiang, China"
+]
+google_scholar = "https://scholar.google.com/citations?user=f35UnjkAAAAJ&hl=zh-CN"
+orcid = "https://orcid.org/0000-0002-7663-8364"
+github = ""
+linkedin = "https://www.researchgate.net/profile/Hao-Chen-469"
+
+[features]
+enable_likes = true
+enable_one_page_mode = false
+
+[i18n]
+enabled = true
+locales = ["zh", "en"]
+default_locale = "zh"
+mode = "auto"
+fixed_locale = "zh"
+persist = true
+switcher = true
+
+[i18n.labels]
+zh = "中文"
+en = "English"
+
+[[navigation]]
+title = "About"
+type = "page"
+target = "about"
+href = "/"
+
+[[navigation]]
+title = "Publications"
+type = "page"
+target = "publications"
+href = "/publications"
+
+[[navigation]]
+title = "Awards"
+type = "page"
+target = "awards"
+href = "/awards"
+
+[[navigation]]
+title = "Services"
+type = "page"
+target = "services"
+href = "/services"
+
+[[navigation]]
+title = "CV"
+type = "page"
+target = "cv"
+href = "/cv"

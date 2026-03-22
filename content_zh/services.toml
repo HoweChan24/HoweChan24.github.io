@@ -1,0 +1,45 @@
+type = "card"
+title = "学术服务"
+description = "学术与专业服务。"
+
+[[items]]
+title = "审稿人"
+subtitle = "Ocean & Coastal Management"
+date = "2025"
+content = "期刊审稿服务。"
+
+[[items]]
+title = "审稿人"
+subtitle = "Journal of Risk Research"
+date = "2025"
+content = "期刊审稿服务。"
+
+[[items]]
+title = "审稿人"
+subtitle = "Transportmetrica B: Transport Dynamics"
+date = "2025"
+content = "期刊审稿服务。"
+
+[[items]]
+title = "青年学者"
+subtitle = "上海生产力学会"
+date = "2025-至今"
+content = "青年学者。"
+
+[[items]]
+title = "会员"
+subtitle = "中国系统工程学会港航经济系统工程专委会"
+date = "2024-2026"
+content = "专委会会员。"
+
+[[items]]
+title = "研究助理"
+subtitle = "深圳国际海事研究院"
+date = "2022-2025"
+content = "研究助理。"
+
+[[items]]
+title = "会员"
+subtitle = "中国公路学会"
+date = "2024-2029"
+content = "学会会员。"

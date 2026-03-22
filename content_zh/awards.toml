@@ -1,0 +1,39 @@
+type = "card"
+title = "奖项"
+description = "部分奖学金、荣誉与竞赛获奖。"
+
+[[items]]
+title = "研究生国家奖学金"
+subtitle = "国家级"
+date = "2024"
+content = "研究生国家奖学金。"
+
+[[items]]
+title = "硕士学业奖学金一等奖"
+subtitle = "深圳大学"
+date = "2024"
+content = "硕士学业奖学金一等奖。"
+
+[[items]]
+title = "硕士学业奖学金特等奖"
+subtitle = "深圳大学"
+date = "2022"
+content = "硕士学业奖学金特等奖。"
+
+[[items]]
+title = "优秀毕业研究生"
+subtitle = "深圳大学"
+date = "2025"
+content = "校级荣誉。"
+
+[[items]]
+title = "重庆市三好学生"
+subtitle = "重庆市"
+date = "2021"
+content = "市级荣誉称号。"
+
+[[items]]
+title = "“互联网+”快递大学生创新创业大赛全国金奖"
+subtitle = "国家级竞赛"
+date = "2020"
+content = "项目“光聚科技——数智化快递驿站系统”获全国金奖。"

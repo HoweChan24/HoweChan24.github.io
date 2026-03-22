@@ -1,0 +1,9 @@
+type = "card"
+title = "Teaching"
+description = "Teaching records and academic instruction."
+
+[[items]]
+title = "Teaching"
+subtitle = "No formal teaching record available"
+date = "Present"
+content = "No formal teaching experience has been listed at this time."

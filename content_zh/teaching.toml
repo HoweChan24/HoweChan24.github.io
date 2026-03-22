@@ -1,0 +1,9 @@
+type = "card"
+title = "教学"
+description = "教学与课程信息。"
+
+[[items]]
+title = "教学"
+subtitle = "暂无正式教学记录"
+date = "当前"
+content = "目前未提供正式教学经历。"

@@ -1,0 +1,39 @@
+type = "card"
+title = "Awards"
+description = "Selected scholarships, honors, and competition awards."
+
+[[items]]
+title = "National Scholarship for Graduate Students"
+subtitle = "Ministry of Education of China"
+date = "2024"
+content = "National scholarship."
+
+[[items]]
+title = "First-Class Academic Scholarship for Master's Students"
+subtitle = "Shenzhen University"
+date = "2024"
+content = "Master's academic scholarship."
+
+[[items]]
+title = "Special Academic Scholarship for Master's Students"
+subtitle = "Shenzhen University"
+date = "2022"
+content = "Special master's academic scholarship."
+
+[[items]]
+title = "Outstanding Graduate Student"
+subtitle = "Shenzhen University"
+date = "2025"
+content = "University honor."
+
+[[items]]
+title = "Municipal Merit Student"
+subtitle = "Chongqing"
+date = "2021"
+content = "Recognized as a Municipal Merit Student of Chongqing."
+
+[[items]]
+title = "National Gold Award, Internet+ Express Innovation and Entrepreneurship Competition"
+subtitle = "National Competition"
+date = "2020"
+content = "Won the national gold award with the project on an intelligent express station system."

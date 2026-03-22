@@ -1,0 +1,45 @@
+type = "card"
+title = "Services"
+description = "Academic and professional services."
+
+[[items]]
+title = "Reviewer"
+subtitle = "Ocean & Coastal Management"
+date = "2025"
+content = "Served as a journal reviewer."
+
+[[items]]
+title = "Reviewer"
+subtitle = "Journal of Risk Research"
+date = "2025"
+content = "Served as a journal reviewer."
+
+[[items]]
+title = "Reviewer"
+subtitle = "Transportmetrica B: Transport Dynamics"
+date = "2025"
+content = "Served as a journal reviewer."
+
+[[items]]
+title = "Young Scholar"
+subtitle = "Shanghai Productivity Society"
+date = "2025-present"
+content = "Young scholar membership."
+
+[[items]]
+title = "Member"
+subtitle = "Port and Shipping Economic Systems Engineering Committee, Systems Engineering Society of China"
+date = "2024-2026"
+content = "Committee member."
+
+[[items]]
+title = "Research Assistant"
+subtitle = "Shenzhen International Maritime Institute"
+date = "2022-2025"
+content = "Research assistant appointment."
+
+[[items]]
+title = "Member"
+subtitle = "China Highway and Transportation Society"
+date = "2024-2029"
+content = "Professional society membership."
