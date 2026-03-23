@@ -104,11 +104,14 @@ export default function Profile({ author, social, features, researchInterests }:
 
         setShowThanks(false);
 
+        const previousCount = likeCount;
+        setHasLiked(true);
+        setLikeCount((prev) => prev + 1);
+        localStorage.setItem('hao-chen-homepage-liked', 'true');
+        setShowThanks(true);
+        setTimeout(() => setShowThanks(false), 2000);
+
         if (!db) {
-            localStorage.setItem('hao-chen-homepage-liked', 'true');
-            setHasLiked(true);
-            setShowThanks(true);
-            setTimeout(() => setShowThanks(false), 2000);
             return;
         }
 
@@ -127,11 +130,12 @@ export default function Profile({ author, social, features, researchInterests }:
                 return nextCount;
             });
 
-            localStorage.setItem('hao-chen-homepage-liked', 'true');
-            setHasLiked(true);
             setLikeCount(newCount);
-            setShowThanks(true);
-            setTimeout(() => setShowThanks(false), 2000);
+        } catch {
+            localStorage.removeItem('hao-chen-homepage-liked');
+            setHasLiked(false);
+            setLikeCount(previousCount);
+            setShowThanks(false);
         } finally {
             setIsSubmittingLike(false);
         }
