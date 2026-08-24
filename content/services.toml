@@ -4,7 +4,25 @@ description = "Academic and professional services."
 
 [[items]]
 title = "Reviewer"
+subtitle = "Transport Policy"
+date = "2025"
+content = "Served as a journal reviewer."
+
+[[items]]
+title = "Reviewer"
+subtitle = "Sustainable Futures"
+date = "2025"
+content = "Served as a journal reviewer."
+
+[[items]]
+title = "Reviewer"
 subtitle = "Ocean & Coastal Management"
+date = "2025"
+content = "Served as a journal reviewer."
+
+[[items]]
+title = "Reviewer"
+subtitle = "Marine Policy"
 date = "2025"
 content = "Served as a journal reviewer."
 
@@ -21,25 +39,37 @@ date = "2025"
 content = "Served as a journal reviewer."
 
 [[items]]
+title = "Reviewer"
+subtitle = "International Journal of Logistics Research and Applications"
+date = "2025"
+content = "Served as a journal reviewer."
+
+[[items]]
+title = "Conference Paper Reviewer"
+subtitle = "World Transport Convention 2024"
+date = "2024"
+content = "Served as a conference paper reviewer."
+
+[[items]]
 title = "Young Scholar"
 subtitle = "Shanghai Productivity Society"
-date = "2025-present"
+date = "2025.06-present"
 content = "Young scholar membership."
 
 [[items]]
 title = "Member"
 subtitle = "Port and Shipping Economic Systems Engineering Committee, Systems Engineering Society of China"
-date = "2024-2026"
+date = "2024.10-2026.10"
 content = "Committee member."
 
 [[items]]
 title = "Research Assistant"
 subtitle = "Shenzhen International Maritime Institute"
-date = "2022-2025"
+date = "2022.09-2025.06"
 content = "Research assistant appointment."
 
 [[items]]
 title = "Member"
 subtitle = "China Highway and Transportation Society"
-date = "2024-2029"
+date = "2024.06.18-2029.03.30"
 content = "Professional society membership."

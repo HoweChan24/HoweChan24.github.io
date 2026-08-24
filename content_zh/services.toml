@@ -4,7 +4,25 @@ description = "学术与专业服务。"
 
 [[items]]
 title = "审稿人"
+subtitle = "Transport Policy"
+date = "2025"
+content = "期刊审稿服务。"
+
+[[items]]
+title = "审稿人"
+subtitle = "Sustainable Futures"
+date = "2025"
+content = "期刊审稿服务。"
+
+[[items]]
+title = "审稿人"
 subtitle = "Ocean & Coastal Management"
+date = "2025"
+content = "期刊审稿服务。"
+
+[[items]]
+title = "审稿人"
+subtitle = "Marine Policy"
 date = "2025"
 content = "期刊审稿服务。"
 
@@ -21,25 +39,37 @@ date = "2025"
 content = "期刊审稿服务。"
 
 [[items]]
+title = "审稿人"
+subtitle = "International Journal of Logistics Research and Applications"
+date = "2025"
+content = "期刊审稿服务。"
+
+[[items]]
+title = "会议论文评审专家"
+subtitle = "2024世界交通运输大会"
+date = "2024"
+content = "会议论文评审服务。"
+
+[[items]]
 title = "青年学者"
 subtitle = "上海生产力学会"
-date = "2025-至今"
+date = "2025.06-至今"
 content = "青年学者。"
 
 [[items]]
 title = "会员"
 subtitle = "中国系统工程学会港航经济系统工程专委会"
-date = "2024-2026"
+date = "2024.10-2026.10"
 content = "专委会会员。"
 
 [[items]]
 title = "研究助理"
 subtitle = "深圳国际海事研究院"
-date = "2022-2025"
+date = "2022.09-2025.06"
 content = "研究助理。"
 
 [[items]]
 title = "会员"
 subtitle = "中国公路学会"
-date = "2024-2029"
+date = "2024.06.18-2029.03.30"
 content = "学会会员。"
