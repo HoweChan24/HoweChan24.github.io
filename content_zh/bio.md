@@ -2,4 +2,4 @@
 
 此前，我获得深圳大学管理科学与工程硕士学位，师从**陈继红教授**；并在重庆邮电大学获得工程管理学士学位。
 
-我的研究成果发表于 *Transport Policy*、*Marine Pollution Bulletin*、*Ocean & Coastal Management*、*Cities* 等期刊。根据 Google Scholar 统计，当前 **H-index 为 6**，**总被引 151 次**。
+我的研究成果发表于 *Transport Policy*、*Marine Pollution Bulletin*、*Ocean & Coastal Management*、*Cities* 等期刊。根据 Google Scholar 统计，当前 **H-index 为 6**，**总被引 191 次**。
